@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/starter-template.css}" rel="stylesheet" media="screen">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/complain">Complain</a></li>
+                <li><a href="/mahasiswa">Mahasiswa</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+
+    <h1>Data Complain</h1>
+    <div th:if="${not #lists.isEmpty(complain)}">
+        <table class="table table-striped">
+            <tr width="100%">
+                <th>ID CO</th>
+                <th>Name CO</th>
+                <th>Date CO</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="complains : ${complain}">
+                <td th:text="${complains.user_id_co}"></td>
+                <td th:text="${complains.user_name_co}"></td>
+                <td th:text="${complains.date_co}"></td>
+                <td>
+                    <a th:href="${'/complain/edit/'+complains.id}"><span class="btn btn-primary">Edit</span> </a>
+                    <a th:href="${'/complain/hapus/'+complains.id}"><span class="btn btn-danger">Delete</span> </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <a href="/complain/create" class="btn btn-default">New Data</a>
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
+</body>
+</html>
